@@ -1,0 +1,12 @@
+# cluster-config.yml
+kind: Simple
+apiVersion: k3d.io/v1alpha5
+metadata:
+  name: cluster-3
+servers: 1
+agents: 1
+image: docker.io/rancher/k3s:v1.30.3-k3s1
+kubeAPI: # same as `--api-port myhost.my.domain:6445` (where the name would resolve to 127.0.0.1)
+  host: "cluster-3.127.0.0.1.nip.io" # important for the `server` setting in the kubeconfig
+  hostIP: "0.0.0.0" # where the Kubernetes API will be listening on
+  hostPort: "40003" # where the Kubernetes API listening port will be mapped to on your host system
