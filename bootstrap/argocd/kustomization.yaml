@@ -8,3 +8,4 @@ resources:
 patches:
 - path: ./patches/argocd-server-svc.yaml
 - path: ./patches/argocd-redis-haproxy-deploy.yaml
+- path: ./patches/argocd-redis-ha-server-statefulset.yaml
