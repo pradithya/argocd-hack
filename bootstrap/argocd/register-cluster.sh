@@ -1,6 +1,8 @@
 #! /bin/bash
 
-argocd login localhost:8080 --insecure --username admin --password $(shell argocd admin initial-password -n argocd | grep -o '^\S*')
+argocd login localhost:8080 --insecure --username admin --password $(argocd admin initial-password -n argocd | grep -o '^\S*')
+argocd repo add git@github.com:pradithya/argocd-hack.git --ssh-private-key-path ~/.ssh/id_rsa
+
 argocd cluster add k3d-cluster-2 -y || true
 argocd cluster add k3d-cluster-3 -y || true
 
@@ -61,3 +63,4 @@ stringData:
       } 
     }
 EOF
+
