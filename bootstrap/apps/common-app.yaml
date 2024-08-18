@@ -12,5 +12,6 @@ spec:
     targetRevision: main
     path: common
   syncPolicy:
+    automated: {}
     syncOptions:
     - ServerSideApply=true

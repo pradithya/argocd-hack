@@ -12,5 +12,6 @@ spec:
     targetRevision: main
     path: bootstrap
   syncPolicy:
+    automated: {}
     syncOptions:
     - ServerSideApply=true

@@ -12,6 +12,7 @@ spec:
     targetRevision: main
     path: bootstrap/argocd
   syncPolicy:
+    automated: {}
     syncOptions:
     - ServerSideApply=true
   ignoreDifferences:
