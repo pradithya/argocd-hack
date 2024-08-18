@@ -13,5 +13,5 @@ spec:
     path: plugins/kustomized-helm
     plugin:
       name: kustomize-helm-v1.0
-    syncPolicy:
-      automated: {}
+  syncPolicy:
+    automated: {}
