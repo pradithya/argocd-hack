@@ -1,8 +1,9 @@
 start:
 	$(MAKE) -C cluster start
-	kubectl apply -k .
 	$(MAKE) -C argocd start
+	kubectl apply -k .
 
 stop:
+	kubectl delete -k .
 	$(MAKE) -C argocd stop
 	$(MAKE) -C cluster stop

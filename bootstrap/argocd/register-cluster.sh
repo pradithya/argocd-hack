@@ -1,5 +1,9 @@
 #! /bin/bash
 
+set -o errexit      # Exit on most errors (see the manual)
+set -o nounset      # Disallow expansion of unset variables
+set -o pipefail     # Use last non-zero exit code in a pipeline
+
 argocd login localhost:8080 --insecure --username admin --password $(argocd admin initial-password -n argocd | grep -o '^\S*')
 argocd repo add git@github.com:pradithya/argocd-hack.git --ssh-private-key-path ~/.ssh/id_rsa
 
@@ -64,3 +68,11 @@ stringData:
     }
 EOF
 
+echo "========================================================================"
+echo "========================================================================"
+echo "ArgoCD setup complete"
+echo "Access the ArgoCD UI at https://localhost:8080"
+echo "Username: admin"
+echo "Password: $(argocd admin initial-password -n argocd | grep -o '^\S*')"
+echo "========================================================================"
+echo "========================================================================"
