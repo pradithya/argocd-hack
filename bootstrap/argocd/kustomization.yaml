@@ -4,9 +4,11 @@ kind: Kustomization
 resources:
   - namespace.yaml 
   - https://github.com/argoproj/argo-cd/manifests/ha/cluster-install?ref=v2.11.0
+  - patches/argocd-plugin-cm.yaml
 
 patches:
 - path: ./patches/argocd-server-svc.yaml
 - path: ./patches/argocd-redis-haproxy-deploy.yaml
 - path: ./patches/argocd-redis-ha-server-statefulset.yaml
 - path: ./patches/argocd-cm.yaml
+- path: ./patches/argocd-repo-server.yaml
