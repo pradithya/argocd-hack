@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - project.yaml
+  - apps/bootstrap-app.yaml
   - apps/argocd-app.yaml
   - apps/common-app.yaml
   - apps/example-app.yaml
