@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bootstrap
+spec:
+  project: default
+  destination:
+    name: in-cluster
+    namespace: argocd
+  source:
+    repoURL: git@github.com:pradithya/argocd-hack.git
+    targetRevision: main
+    path: bootstrap
+  syncPolicy:
+    syncOptions:
+    - ServerSideApply=true
