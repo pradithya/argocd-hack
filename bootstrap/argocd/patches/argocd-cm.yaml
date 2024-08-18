@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-cm
-data:
+stringData:
   configManagementPlugins:
     - name: kustomized-helm
       init:
