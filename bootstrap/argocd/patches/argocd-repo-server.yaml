@@ -18,7 +18,7 @@ spec:
           - mountPath: /home/argocd/cmp-server/plugins
             name: plugins
           # Remove this volumeMount if you've chosen to bake the config file into the sidecar image.
-          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+          - mountPath: /home/argocd/cmp-server/config
             subPath: plugin.yaml
             name: kustomize-helm
           # Starting with v2.4, do NOT mount the same tmp volume as the repo-server container. The filesystem separation helps 
