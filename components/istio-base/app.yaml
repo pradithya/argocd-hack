@@ -6,7 +6,7 @@ spec:
   project: default
   destination:
     name: in-cluster
-    namespace: istio-system
+    namespace: infrastructure
   source:
     repoURL: git@github.com:pradithya/argocd-hack.git
     targetRevision: main

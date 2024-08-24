@@ -4,3 +4,11 @@ kind: Kustomization
 components:
 - namespace.yaml
 - ../../../components/istio-base
+
+patchesStrategicMerge:
+- target:
+    kind: Application
+  patch: |-
+    spec:
+      destination:
+        name: k3d-cluster-1
