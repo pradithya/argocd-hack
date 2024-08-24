@@ -28,3 +28,4 @@ spec:
         repoURL: git@github.com:pradithya/argocd-hack.git
         path: components/infrastructure-ns
         targetRevision: main
+      syncPolicy: {}
