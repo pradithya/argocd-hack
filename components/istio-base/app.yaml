@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istio-base
+spec:
+  project: default
+  destination:
+    name: in-cluster
+    namespace: istio-system
+  source:
+    repoURL: git@github.com:pradithya/argocd-hack.git
+    targetRevision: main
+    path: bootstrap/argocd
+  syncPolicy:
+    automated: {}
+    syncOptions:
+    - ServerSideApply=true
+  ignoreDifferences:
+  - kind: Service
+    jqPathExpressions:
+      - '.status.loadBalancer.ingress[].ipMode'
