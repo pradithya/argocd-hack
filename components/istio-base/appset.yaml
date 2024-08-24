@@ -1,0 +1,53 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: istio-base
+  namespace: argocd
+spec:
+  goTemplate: true
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  generators:
+  - git:
+      repoURL: git@github.com:pradithya/argocd-hack.git
+      revision: main
+      files:
+      - path: clusters/*/infrastructure/istio-base/config.yaml
+      values:
+        cluster: '{{ index .path.segments 1 }}'
+        defaultVersion: 1.23.0
+  template:
+    metadata:
+      name: infrastructure-{{ .values.cluster }}
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: default
+      destination:
+        name: '{{ .values.cluster }}'
+        namespace: infrastructure
+      source:
+        repoURL: git@github.com:pradithya/argocd-hack.git
+        path: '{{ .path.path }}'
+        targetRevision: main
+        kustomize: 
+          nameSuffix: '-{{ .values.cluster }}'
+
+          resources:
+          - namespace.yaml
+
+          patches:
+          - directory: '{{ .path.path }}/overlays'
+
+          helmCharts:
+          - name: base
+            namespace: infrastructure
+            includeCRDs: true
+            valuesFile: values.yaml
+            additionalValuesFiles:
+              - '{{ .path.path }}/values.yaml'
+            releaseName: istio-base
+            version: '{{ .values.override.version | default .values.defaultVersion }}'
+            repo: https://istio-release.storage.googleapis.com/charts
+
+
