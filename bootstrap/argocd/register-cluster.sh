@@ -10,6 +10,7 @@ argocd repo add git@github.com:pradithya/argocd-hack.git --ssh-private-key-path 
 # Add the k3d clusters to ArgoCD, this step will fail since the clusters are not reachable from the ArgoCD control plane
 # We will fix this in the next steps
 # Executing this step will create ArgoCD token in the target clusters, which we will use for creating the cluster credential
+argocd cluster add k3d-cluster-1 -y || true
 argocd cluster add k3d-cluster-2 -y || true
 argocd cluster add k3d-cluster-3 -y || true
 

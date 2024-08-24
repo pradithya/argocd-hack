@@ -7,5 +7,5 @@ start:
 
 stop:
 	kubectx k3d-cluster-1
-	kubectl delete -n argocd -k .
+	kubectl delete -n argocd -k . --force --grace-period=0 --ignore-not-found
 	
