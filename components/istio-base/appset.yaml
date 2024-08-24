@@ -11,14 +11,14 @@ spec:
   - git:
       repoURL: git@github.com:pradithya/argocd-hack.git
       revision: main
-      files:
-      - path: clusters/*/infrastructure/istio-base/config.yaml
+      directories:
+      - path: clusters/*/infrastructure/istio-base
       values:
         cluster: '{{ index .path.segments 1 }}'
         defaultVersion: 1.23.0
   template:
     metadata:
-      name: infrastructure-{{ .values.cluster }}
+      name: istio-base-{{ .values.cluster }}
       finalizers:
       - resources-finalizer.argocd.argoproj.io
     spec:
