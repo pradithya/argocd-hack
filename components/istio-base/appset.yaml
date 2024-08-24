@@ -36,4 +36,4 @@ spec:
           - name: PATH
             value: '../../{{ .path.path }}'
           - name: VERSION
-            value: '{{ .values.override.version | default .values.defaultVersion }}'
+            value: '{{ .override.version | default .values.defaultVersion }}'
