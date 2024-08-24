@@ -31,7 +31,7 @@ spec:
         path: '{{ .path.path }}'
         targetRevision: main
         plugin:
-          name: kustomize-envsubst-v1.0:
+          name: kustomize-envsubst-v1.0
           env:
           - name: PATH
             value: '{{ .path.path }}'
