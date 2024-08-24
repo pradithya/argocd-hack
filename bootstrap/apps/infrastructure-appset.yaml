@@ -20,6 +20,8 @@ spec:
       - resources-finalizer.argocd.argoproj.io
     spec:
       project: default
+      syncPolicy:
+        automated: {}
       destination:
         name: {{ index .path.segments 1 }}
         namespace: infrastructure
