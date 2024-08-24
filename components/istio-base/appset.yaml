@@ -34,6 +34,6 @@ spec:
           name: kustomize-envsubst-v1.0
           env:
           - name: PATH
-            value: '{{ .path.path }}'
+            value: '../../{{ .path.path }}'
           - name: VERSION
             value: '{{ .values.override.version | default .values.defaultVersion }}'
