@@ -11,8 +11,8 @@ spec:
   - git:
       repoURL: git@github.com:pradithya/argocd-hack.git
       revision: main
-      directories:
-      - path: clusters/*/infrastructure/istio-base
+      files:
+      - path: clusters/*/infrastructure/istio-base/config.yaml
       values:
         cluster: '{{ index .path.segments 1 }}'
         defaultVersion: 1.23.0
