@@ -28,7 +28,7 @@ spec:
         namespace: infrastructure
       source:
         repoURL: git@github.com:pradithya/argocd-hack.git
-        path: '{{ .path.path }}'
+        path: components/istio-base
         targetRevision: main
         plugin:
           name: kustomize-envsubst-v1.0
