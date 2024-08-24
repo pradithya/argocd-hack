@@ -30,7 +30,8 @@ spec:
         repoURL: git@github.com:pradithya/argocd-hack.git
         path: '{{ .path.path }}'
         targetRevision: main
-        kustomize-envsubst-v1.0:
+        plugin:
+          name: kustomize-envsubst-v1.0:
           env:
           - name: PATH
             value: '{{ .path.path }}'
