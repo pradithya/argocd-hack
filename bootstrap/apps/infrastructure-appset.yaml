@@ -23,7 +23,7 @@ spec:
       syncPolicy:
         automated: {}
       destination:
-        name: {{ index .path.segments 1 }}
+        name: '{{ index .path.segments 1 }}'
         namespace: infrastructure
       source:
         repoURL: git@github.com:pradithya/argocd-hack.git
