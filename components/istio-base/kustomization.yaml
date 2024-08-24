@@ -5,7 +5,7 @@ resources:
 - app.yaml
 
 helmCharts:
-- name: istio-base
+- name: base
   namespace: istio-system
   includeCRDs: true
   valuesFile: values.yaml
