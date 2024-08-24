@@ -7,7 +7,7 @@ spec:
   template:
     spec:
       containers:
-      - name: kustomize-helm
+      - name: kustomize-envsubst
         command: [/var/run/argocd/argocd-cmp-server] # Entrypoint should be Argo CD lightweight CMP server i.e. argocd-cmp-server
         image: alpine/k8s:1.30.4 # This can be off-the-shelf or custom-built image
         securityContext:
@@ -21,14 +21,14 @@ spec:
           # Remove this volumeMount if you've chosen to bake the config file into the sidecar image.
           - mountPath: /home/argocd/cmp-server/config/plugin.yaml
             subPath: plugin.yaml
-            name: kustomize-helm
+            name: kustomize-envsubst
           # Starting with v2.4, do NOT mount the same tmp volume as the repo-server container. The filesystem separation helps 
           # mitigate path traversal attacks.
           - mountPath: /tmp
             name: cmp-tmp
       volumes:
       - configMap:
-          name: kustomize-helm
-        name: kustomize-helm
+          name: kustomize-envsubst
+        name: kustomize-envsubst
       - emptyDir: {}
         name: cmp-tmp
