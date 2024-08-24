@@ -21,8 +21,8 @@ spec:
     spec:
       project: default
       destination:
-        name: in-cluster
-        namespace: argocd
+        name: {{ index .path.segments 1 }}
+        namespace: infrastructure
       source:
         repoURL: git@github.com:pradithya/argocd-hack.git
         path: '{{ .path.path }}'
