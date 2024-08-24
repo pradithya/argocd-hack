@@ -15,7 +15,7 @@ spec:
       - path: clusters/*/infrastructure
   template:
     metadata:
-      name: infrastructure-'{{ index .path.segments 1 }}'
+      name: infrastructure-{{ index .path.segments 1 }}
       finalizers:
       - resources-finalizer.argocd.argoproj.io
     spec:
