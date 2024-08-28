@@ -6,3 +6,13 @@ metadata:
 servers: 1
 agents: 1
 image: docker.io/rancher/k3s:v1.30.3-k3s1
+ports:
+  - port: 8081:80 # same as `--port '8080:80@loadbalancer'`
+    nodeFilters:
+      - loadbalancer
+options:
+  k3s:
+    extraArgs:
+      - arg: "--disable=traefik,metrics-server"
+        nodeFilters:
+          - server:*
