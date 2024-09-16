@@ -35,8 +35,8 @@ spec:
           releaseName: istio-base
           valueFiles:
           - istio-base.yaml
-          - ../../clusters/{{ .values.environment }}/override/istio/istio-base.yaml
-          - ../../clusters/{{ .values.environment }}/{{ .values.cluster }}/infrastructure/istio/istio-base.yaml
+          - ../clusters/{{ .values.environment }}/override/istio/istio-base.yaml
+          - ../clusters/{{ .values.environment }}/{{ .values.cluster }}/infrastructure/istio/istio-base.yaml
           ignoreMissingValueFiles: true
       syncPolicy:
         automated: {}
