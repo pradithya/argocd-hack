@@ -28,15 +28,18 @@ spec:
         name: '{{ .values.cluster }}'
         namespace: infrastructure
       sources:
+      - repoURL: git@github.com:pradithya/argocd-hack.git
+        targetRevision: main
+        ref: values
       - repoURL: https://istio-release.storage.googleapis.com/charts
         chart: base
         targetRevision: '{{ .values.chartVersion }}'
         helm:
           releaseName: istio-base
           valueFiles:
-          - istio-base.yaml
-          - ../clusters/{{ .values.environment }}/override/istio/istio-base.yaml
-          - ../clusters/{{ .values.environment }}/{{ .values.cluster }}/infrastructure/istio/istio-base.yaml
+          - $values/components/istio/istio-base.yaml
+          - $values/clusters/{{ .values.environment }}/override/istio/istio-base.yaml
+          - $values/clusters/{{ .values.environment }}/{{ .values.cluster }}/infrastructure/istio/istio-base.yaml
           ignoreMissingValueFiles: true
       syncPolicy:
         automated: {}
