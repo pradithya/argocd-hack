@@ -8,15 +8,26 @@ spec:
   syncPolicy:
     preserveResourcesOnDeletion: true
   generators:
-  - git:
-      repoURL: git@github.com:pradithya/argocd-hack.git
-      revision: main
-      directories:
-      - path: clusters/*/*/infrastructure/istio
-      values:
-        environment: '{{ index .path.segments 1 }}'
-        cluster: '{{ index .path.segments 2 }}'
-        chartVersion: 1.22.0
+  - merge:
+      mergeKeys:
+      - values.cluster
+      generators:
+      - git:
+          repoURL: git@github.com:pradithya/argocd-hack.git
+          revision: main
+          directories:
+          - path: clusters/*/*/infrastructure/istio
+          values:
+            environment: '{{ index .path.segments 1 }}'
+            cluster: '{{ index .path.segments 2 }}'
+            chartVersion: 1.22.0
+      - clusters:
+          selector:
+            matchLabels:
+              environment: staging
+          values:
+            cluster: '{{ .name }}'
+            chartVersion: 1.23.0
   template:
     metadata:
       name: istio-{{ .values.cluster }}
