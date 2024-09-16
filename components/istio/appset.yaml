@@ -18,9 +18,9 @@ spec:
             environment: '{{ index .metadata.labels "environment" }}'
             cluster: '{{ .name }}'
             chartVersion: 1.22.0
-        selector:
-          matchLabels:
-            argocd.argoproj.io/secret-type: cluster
+          selector:
+            matchLabels:
+              argocd.argoproj.io/secret-type: cluster
       - clusters:
           selector:
             matchLabels:
