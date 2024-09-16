@@ -14,10 +14,6 @@ spec:
       - server
       generators:
       - clusters:
-          repoURL: git@github.com:pradithya/argocd-hack.git
-          revision: main
-          directories:
-          - path: clusters/*/*/infrastructure/istio
           values:
             environment: '{{ index .metadata.labels "environment" }}'
             cluster: '{{ .name }}'
