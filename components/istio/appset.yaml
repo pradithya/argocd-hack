@@ -26,14 +26,14 @@ spec:
             matchLabels:
               environment: staging
           values:
-            cluster: '{{ name }}'
+            cluster: '{{ .name }}'
             chartVersion: 1.22.0
       - clusters:
           selector:
             matchLabels:
               environment: production
           values:
-            cluster: '{{ name }}'
+            cluster: '{{ .name }}'
             chartVersion: 1.21.0
   template:
     metadata:
