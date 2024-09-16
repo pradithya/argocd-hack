@@ -11,24 +11,32 @@ spec:
   generators:
   - merge:
       mergeKeys:
-      - values.cluster
+      - server
       generators:
-      - git:
+      - clusters:
           repoURL: git@github.com:pradithya/argocd-hack.git
           revision: main
           directories:
           - path: clusters/*/*/infrastructure/istio
           values:
-            environment: '{{ index .path.segments 1 }}'
-            cluster: '{{ index .path.segments 2 }}'
+            environment: '{{ index .metadata.labels "environment" }}'
+            cluster: '{{ .name }}'
             chartVersion: 1.22.0
+        selector:
+          matchLabels:
+            argocd.argoproj.io/secret-type: cluster
       - clusters:
           selector:
             matchLabels:
-              environment: staging
+              environment: integration
           values:
-            cluster: '{{ .name }}'
             chartVersion: 1.23.0
+      - clusters:
+          selector:
+            matchLabels:
+              environment: production
+          values:
+            chartVersion: 1.22.0
   template:
     metadata:
       name: istio-{{ .values.cluster }}
