@@ -49,5 +49,8 @@ spec:
       - configMap:
           name: kustomize-envsubst
         name: kustomize-envsubst
+      - configMap:
+          name: kustomize-helm
+        name: kustomize-helm
       - emptyDir: {}
         name: cmp-tmp
