@@ -12,6 +12,6 @@ spec:
     targetRevision: master
     path: plugins/kustomized-helm
     plugin:
-      name: kustomize-helm-v1.0
+      name: kustomize-helm
   syncPolicy:
     automated: {}
