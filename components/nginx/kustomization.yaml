@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+resources:
+- resources/admission-webhooks/job-patch/clusterrole.yaml
+- resources/admission-webhooks/job-patch/clusterrolebinding.yaml
+- resources/admission-webhooks/job-patch/job-createSecret.yaml
+- resources/admission-webhooks/job-patch/job-patchWebhook.yaml
+- resources/admission-webhooks/job-patch/role.yaml
+- resources/admission-webhooks/job-patch/rolebinding.yaml
+- resources/admission-webhooks/job-patch/serviceaccount.yaml
+- resources/admission-webhooks/validating-webhook.yaml
+- resources/clusterrole.yaml
+- resources/clusterrolebinding.yaml
+- resources/controller-configmap.yaml
+- resources/controller-deployment.yaml
+- resources/controller-ingressclass.yaml
+- resources/controller-poddisruptionbudget.yaml
+- resources/controller-role.yaml
+- resources/controller-rolebinding.yaml
+- resources/controller-service-webhook.yaml
+- resources/controller-service.yaml
+- resources/controller-serviceaccount.yaml

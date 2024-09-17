@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: nginx-appset
+  namespace: argocd
+spec:
+  goTemplate: true
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  generators:
+  - clusters:
+      values:
+        environment: '{{ index .metadata.labels "environment" }}'
+        cluster: '{{ .name }}'
+      selector:
+        matchLabels:
+          argocd.argoproj.io/secret-type: cluster
+  template:
+    metadata:
+      name: nginx-ingress-{{ .values.cluster }}
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: default
+      destination:
+        name: '{{ .values.cluster }}'
+        namespace: infrastructure
+      sources:
+      - repoURL: git@github.com:pradithya/argocd-hack.git
+        targetRevision: main
+        ref: values
+      - repoURL: git@github.com:pradithya/argocd-hack.git
+        targetRevision: main
+        kustomize:
+          components:
+          - ./
+          patches:
+          - path: $values/clusters/{{ .values.environment }}/override/nginx/patch.yaml
+          - path: $values/clusters/{{ .values.environment }}/{{ .values.cluster }}/infrastructure/nginx/patch.yaml
+      syncPolicy:
+        automated: {}
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+
+
