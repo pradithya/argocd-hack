@@ -22,4 +22,40 @@ data:
       # Error output will be sent to the UI, so avoid printing sensitive information (such as secrets).
       generate:
         command: [sh, -c]
-        args: ["helm template --release-name release-name . > all.yaml && kustomize build"]
+        args: ["env"]
+      parameters:
+        - name: releaseName
+          title: Release Name
+          required: true
+          tooltip: The name of the Helm release
+          string: my-release
+        - name: chart
+          title: Chart
+          required: true
+          tooltip: The Helm chart to render
+          string: ""
+        - name: version
+          title: Version
+          required: true
+          tooltip: The version of the Helm chart
+          string: ""
+        - name: repoURL
+          title: Repository URL
+          required: true
+          tooltip: The Helm repository URL
+          string: ""
+        - name: valueFiles
+          title: Value Files
+          required: false
+          tooltip: Path to Helm value files
+          collectionType: array
+        - name: resources
+          title: Resources
+          required: false
+          tooltip: Path to Kustomize resources
+          collectionType: array
+        - name: patches
+          title: Patches
+          required: false
+          tooltip: Path to Kustomize patches
+          collectionType: array
