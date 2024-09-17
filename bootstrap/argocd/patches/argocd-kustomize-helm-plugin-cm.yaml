@@ -50,13 +50,7 @@ data:
             required: false
             tooltip: Path to Helm value files
             collectionType: array
-          - name: resources
-            title: Resources
-            required: false
-            tooltip: Path to Kustomize resources
-            collectionType: array
-          - name: patches
-            title: Patches
-            required: false
-            tooltip: Path to Kustomize patches
-            collectionType: array
+          - name: kustomizationTemplate
+            title: kustomization template
+            required: true
+            tooltip: kustomization.yaml template file
