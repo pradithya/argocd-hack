@@ -5,6 +5,7 @@ resources:
   - namespace.yaml 
   - https://github.com/argoproj/argo-cd/manifests/ha/cluster-install?ref=v2.11.0
   - patches/argocd-kustomize-envsubst-plugin-cm.yaml
+  - patches/argocd-kustomize-helm-plugin-cm.yaml
 
 patches:
 - path: ./patches/argocd-server-svc.yaml
