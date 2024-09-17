@@ -10,8 +10,18 @@ spec:
   source:
     repoURL: https://github.com/argoproj/argocd-example-apps
     targetRevision: master
-    path: plugins/kustomized-helm
+    path: examples/kustomize-helm-plugin-app
     plugin:
       name: kustomize-helm
+      repoURL: https://kubernetes.github.io/ingress-nginx
+      chart: ingress-nginx
+      version: 	"4.11.2"
+      releaseName: test
+      valueFiles:
+      - kustomize-helm-plugin-app/values.yaml
+      resources:
+      - kustomize-helm-plugin-app/resources.yaml
+      patches:
+      - path: kustomize-helm-plugin-app/patch.yaml
   syncPolicy:
     automated: {}
