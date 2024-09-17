@@ -9,7 +9,7 @@ spec:
     namespace: argocd
   source:
     repoURL: git@github.com:pradithya/argocd-hack.git
-    targetRevision: master
+    targetRevision: main
     path: examples/kustomize-helm-plugin-app
     plugin:
       name: kustomize-helm
