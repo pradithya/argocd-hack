@@ -31,8 +31,8 @@ spec:
         path: components/nginx
         kustomize:
           patches:
-          - path: ../../clusters/{{ .values.environment }}/override/nginx/patch.yaml
-          - path: ../../clusters/{{ .values.environment }}/{{ .values.cluster }}/infrastructure/nginx/patch.yaml
+          - path: '../../clusters/{{ .values.environment }}/override/nginx/patch.yaml'
+          - path: '../../clusters/{{ .values.environment }}/{{ .values.cluster }}/infrastructure/nginx/patch.yaml'
       syncPolicy:
         automated: {}
         syncOptions:
