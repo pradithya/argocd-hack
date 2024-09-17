@@ -28,16 +28,11 @@ spec:
       sources:
       - repoURL: git@github.com:pradithya/argocd-hack.git
         targetRevision: main
-        ref: values
-      - repoURL: git@github.com:pradithya/argocd-hack.git
-        targetRevision: main
         path: components/nginx
         kustomize:
-          components:
-          - ./
           patches:
-          - path: $values/clusters/{{ .values.environment }}/override/nginx/patch.yaml
-          - path: $values/clusters/{{ .values.environment }}/{{ .values.cluster }}/infrastructure/nginx/patch.yaml
+          - path: ../../clusters/{{ .values.environment }}/override/nginx/patch.yaml
+          - path: ../../clusters/{{ .values.environment }}/{{ .values.cluster }}/infrastructure/nginx/patch.yaml
       syncPolicy:
         automated: {}
         syncOptions:
