@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kustomize-helm
+data:
+  plugin.yaml: |
+    apiVersion: argoproj.io/v1alpha1
+    kind: ConfigManagementPlugin
+    metadata:
+      name: kustomize-helm
+    spec:
+      # The version of your plugin. Optional. If specified, the Application's spec.source.plugin.name field
+      # must be <plugin name>-<plugin version>.
+      version: v1.0
+      # The init command runs in the Application source directory at the beginning of each manifest generation. The init
+      # command can output anything. A non-zero status code will fail manifest generation.
+      init:
+        # Init always happens immediately before generate, but its output is not treated as manifests.
+        # This is a good place to, for example, download chart dependencies.
+        command: ["/bin/sh", "-c"]
+        args: ["helm dependency build"]
+      # The generate command runs in the Application source directory each time manifests are generated. Standard output
+      # must be ONLY valid Kubernetes Objects in either YAML or JSON. A non-zero exit code will fail manifest generation.
+      # To write log messages from the command, write them to stderr, it will always be displayed.
+      # Error output will be sent to the UI, so avoid printing sensitive information (such as secrets).
+      generate:
+        command: [sh, -c]
+        args: ["helm template --release-name release-name . > all.yaml && kustomize build"]

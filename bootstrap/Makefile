@@ -1,5 +1,5 @@
 start:
-	# $(MAKE) -C cluster start
+	$(MAKE) -C cluster start
 	$(MAKE) -C argocd start
 	kubectx k3d-cluster-1
 	kubectl apply -k .

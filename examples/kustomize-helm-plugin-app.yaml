@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kustomized-helm
+spec:
+  project: default
+  destination:
+    name: in-cluster
+    namespace: argocd
+  source:
+    repoURL: https://github.com/argoproj/argocd-example-apps
+    targetRevision: master
+    path: plugins/kustomized-helm
+    plugin:
+      name: kustomize-helm-v1.0
+  syncPolicy:
+    automated: {}
