@@ -8,7 +8,7 @@ spec:
     name: in-cluster
     namespace: argocd
   source:
-    repoURL: https://github.com/argoproj/argocd-example-apps
+    repoURL: git@github.com:pradithya/argocd-hack.git
     targetRevision: master
     path: examples/kustomize-helm-plugin-app
     plugin:
