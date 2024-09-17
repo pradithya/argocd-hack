@@ -11,7 +11,7 @@ argocd repo add git@github.com:pradithya/argocd-hack.git --ssh-private-key-path 
 # We will fix this in the next steps
 # Executing this step will create ArgoCD token in the target clusters, which we will use for creating the cluster credential
 argocd cluster add k3d-cluster-1 --label environment=development -y || true
-argocd cluster add k3d-cluster-2 --label environment=staging -y || true
+argocd cluster add k3d-cluster-2 --label environment=integration -y || true
 argocd cluster add k3d-cluster-3 --label environment=production -y || true
 
 # Connect k3d-cluster-1 to the control plane of k3d-cluster-2 and k3d-cluster-3 so that ArgoCD can reach their API servers
