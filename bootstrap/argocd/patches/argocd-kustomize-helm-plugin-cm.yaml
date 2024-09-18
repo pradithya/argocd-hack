@@ -15,7 +15,7 @@ data:
       # Error output will be sent to the UI, so avoid printing sensitive information (such as secrets).
       generate:
         command: [sh, -c]
-        args: ["env"]
+        args: [">&2 env"]
       parameters:
         static:
           - name: releaseName
