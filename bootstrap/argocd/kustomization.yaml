@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - namespace.yaml 
   - https://github.com/argoproj/argo-cd/manifests/ha/cluster-install?ref=v2.13.0-rc2
-  - patches/argocd-kustomize-envsubst-plugin-cm.yaml
   - patches/argocd-kustomize-helm-plugin-cm.yaml
 
 patches:
