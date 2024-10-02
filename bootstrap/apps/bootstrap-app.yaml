@@ -12,6 +12,7 @@ spec:
     repoURL: git@github.com:pradithya/argocd-hack.git
     targetRevision: main
     path: bootstrap
+    kustomize: {}
   syncPolicy:
     automated: {}
     syncOptions:
